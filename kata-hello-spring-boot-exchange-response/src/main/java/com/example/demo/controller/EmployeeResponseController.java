@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,12 +13,12 @@ public class EmployeeResponseController {
     @Autowired
     ServiceResponse serviceResponse;
 
-    @RequestMapping(value = "/response", method = RequestMethod.GET)
-    public String getResponse() {
-        return serviceResponse.callResponse();
+    @RequestMapping(value = "/showWeather/{name}", method = RequestMethod.GET)
+    public String showWeather(@PathVariable(value = "name") String name) {
+        return serviceResponse.callResponse(name);
     }
 
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getResponseTest() {
         return "test";
     }

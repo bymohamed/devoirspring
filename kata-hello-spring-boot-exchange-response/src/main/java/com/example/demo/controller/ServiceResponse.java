@@ -6,6 +6,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 @Service
 public class ServiceResponse {
@@ -13,16 +14,22 @@ public class ServiceResponse {
     @Autowired
     RestTemplate restTemplate;
 
-    public String callResponse() {
+    @HystrixCommand(fallbackMethod = "callResponse_Fallback")
+    public String callResponse(String name) {
 
         String response = restTemplate
-                .exchange("http://localhost:3332/result"
+                .exchange("http://localhost:8080/weatherSearch/{name}"
                         , HttpMethod.GET
                         , null
                         , new ParameterizedTypeReference<String>() {
-                        }).getBody();
+                        }, name).getBody();
 
         return "this is my result : " + response;
+    }
+
+    @SuppressWarnings("unused")
+    public String callResponse_Fallback(String name){
+        return "down";
     }
 
     @Bean
