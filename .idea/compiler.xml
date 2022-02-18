@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="spring-eureka-server" />
         <module name="springbootdemo" />
         <module name="demo" />
         <module name="kata-hello-spring-boot-final-state" />
