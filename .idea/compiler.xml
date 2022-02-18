@@ -7,6 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="springbootdemo" />
+        <module name="demo" />
+        <module name="kata-hello-spring-boot-final-state" />
       </profile>
     </annotationProcessing>
   </component>
